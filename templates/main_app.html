@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
+
+</head>
+<body>
+{% verbatim %}
+
+
+<div id="orders_app">
+    <nav class="navbar navbar-dark bg-dark sticky-top">
+        <a class="navbar-brand mx-5 col">Аптека</a>
+        <div class="container col ">
+            <a v-on:click="change1([drugstore,specialization])" href="#" class="badge badge-primary">Аптеки</a>
+            <a v-on:click="change2([dd,groups])" href="#" class="badge badge-secondary">Лекарства</a>
+            <a v-on:click="change3([manufacturer,country])" href="#" class="badge badge-success">Производители</a>
+        </div>
+        <form class="row mx-5">
+            <input v-model="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+    <div class="container">
+        <table class="table table-bordered mt-5">
+            <thead class="thead-dark">
+            <tr>
+                <th v-for="(i, key) in data[0]" scope="col">{{ key }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="i in data" onmouseover="this.style.backgroundColor='light-gray';" onmouseout="this.style.backgroundColor='white';">
+                <td v-on:click="tmp(j, [drug,dd,drugstore,dds,type,manufacturer])" v-for="j in i">{{j}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endverbatim %}
+<script src="/static/app.js"></script>
+</body>
+</html>
